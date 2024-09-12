@@ -22,35 +22,50 @@ Setosa
 2996
 Versicolor  
 500
+
 TASK 3: data cleaning 
 
 Why is it important to let the system know which values are missing? 
+So we can sort them out, since they dont give valuable information and manipulate the data.
 
 What are the average length of sepals (sl) and their standard deviation after declaring missing values (3.1)? 
+Mean: 3.53, Deviation: 2.1
 
 What are the average length of sepals (sl) and their standard deviation after removing outliers (3.2)? 
+Mean: 3.52, Deviation: 2.02
 
 Do you think the outliers you have removed were noise (that is, wrong measurements) or unusual but correct observations? 
+Our guess is that the outliers were noise, but it could be possible that there were very unusual observations, but they wouldnt give us any meaningful information.
 
 Would you first handle missing data and then remove outliers, or the other way round? Why? 
+Yes. Since the actual outliers werent visible in the plot they would have been in the standard deviation and wouldnt have been outliers in that scenario.
 
-Assume  your  observations  (records)  represent  people  in  a  social  network,  and  one variable stores their degree centrality. Would you remove outliers in this case? why? 
+Assume  your  observations  (records)  represent  people  in  a  social  network,  and  one variable stores their degree centrality. Would you remove outliers in this case? why?
+No. They could provide meaningful information in social networks.
 
 TASK 4: data transformation 
 
-What  are  the  average  length  and  standard  deviation  of  sepals  after  min-max normalization? 
+What  are  the  average  length  and  standard  deviation  of  sepals  after  min-max normalization?
+Mean: 0.44, deviation: 0.33
 
 What are the average length and standard deviation of sepals after standardization? 
+Mean: 0, deviation: 1
 
 How many components have been selected after 4.3? 
+4
 
 How much variance is captured by the first two components? 
+98%
 
 How is the first component defined as a combination of the original attributes? 
+PC1 = w1*sl + w2*sw + w3*pl + w4*pw
+w1 = 0.356, w2 = -0.0797, w3 = 0.857, w4 = 0.364
 
 How many components would have been selected after 4.4 (that is, with an attribute expressed on a larger range)? 
+3
 
 How many components would have been selected after 4.5 (that is, with an outlier)? 
+1
 
 TASK 5: 
 
@@ -69,4 +84,5 @@ Stratified (5.4)
 Number of iris virginica 
 
 Are there repeated identifiers? 
+
 Does the number of iris versicolor included in the sample change if you change the local random seed? 
