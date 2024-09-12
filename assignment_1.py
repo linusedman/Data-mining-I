@@ -75,6 +75,8 @@ mask = (abs(zscores) < threshold).all(axis=1)
 # Filter the DataFrame based on the mask
 dataframe = dataframe[mask]
 
+dataframe_copy = dataframe
+
 # print(f"Mean of sl: {dataframe['sl'].mean()}")
 # print(f"Satandard deviation of sl: {dataframe['sl'].std()}")
 # pairplot(dataframe, hue= "species")
@@ -95,8 +97,8 @@ scaled_dataframe = pd.DataFrame(scaled_data, columns=numeric_columns.columns)
 non_numeric_columns = dataframe.select_dtypes(exclude=[np.number]).reset_index(drop=True)
 MM_dataframe = pd.concat([scaled_dataframe, non_numeric_columns], axis=1)
 
-print(f"Mean of sl: {MM_dataframe['sl'].mean()}")
-print(f"Satandard deviation of sl: {MM_dataframe['sl'].std()}")
+# print(f"Mean of sl: {MM_dataframe['sl'].mean()}")
+# print(f"Satandard deviation of sl: {MM_dataframe['sl'].std()}")
 
 # Step 1: Scale numeric columns
 scaler = StandardScaler()
@@ -117,7 +119,7 @@ pca = PCA ()
 
 numeric_columns = dataframe.select_dtypes(include=[np.number])  # Select numeric columns
 scaled_data = pca.fit_transform(numeric_columns)
-print(scaled_data)
+# print(scaled_data)
 
 
 
@@ -133,11 +135,11 @@ PCA_dataframe = pd.concat([scaled_dataframe, non_numeric_columns], axis=1)
 # pairplot(PCA_dataframe, hue= "species")
 # plt.savefig("Data-mining-I/pairplot_pca.png")
 
-print(pca.explained_variance_ratio_)
+# print(pca.explained_variance_ratio_)
 
-pca_df = pd.DataFrame(pca.components_, columns=['sl', 'sw', 'pl', 'pw'], index=['PC 1', 'PC 2', 'PC 3', 'PC 4'])
+# pca_df = pd.DataFrame(pca.components_, columns=['sl', 'sw', 'pl', 'pw'], index=['PC 1', 'PC 2', 'PC 3', 'PC 4'])
 
-print(pca_df)
+# print(pca_df)
 
 
 
@@ -151,7 +153,7 @@ pca = PCA ()
 
 numeric_columns = dataframe.select_dtypes(include=[np.number])  # Select numeric columns
 scaled_data = pca.fit_transform(numeric_columns)
-print(scaled_data)
+# print(scaled_data)
 
 # Step 2: Convert the scaled data back to a DataFrame
 scaled_dataframe = pd.DataFrame(scaled_data, columns=numeric_columns.columns)
@@ -165,11 +167,49 @@ PCA_dataframe = pd.concat([scaled_dataframe, non_numeric_columns], axis=1)
 # pairplot(PCA_dataframe, hue= "species")
 # plt.savefig("Data-mining-I/pairplot_pca.png")
 
-print(pca.explained_variance_ratio_)
+# print(pca.explained_variance_ratio_)
 
-pca_df = pd.DataFrame(pca.components_, columns=['sl', 'sw', 'pl', 'pw'], index=['PC 1', 'PC 2', 'PC 3', 'PC 4'])
+# pca_df = pd.DataFrame(pca.components_, columns=['sl', 'sw', 'pl', 'pw'], index=['PC 1', 'PC 2', 'PC 3', 'PC 4'])
 
-print(pca_df)
+# print(pca_df)
 
 # ===================================================================
 # Part 5
+
+np.random.seed(1)
+
+sample = dataframe_copy.sample(n=150)
+print(sample.head())
+num_virginica = (sample["species"] == "Iris-virginica").sum()
+num_setosa = (sample["species"] == "Iris-setosa").sum()
+num_versicolor = (sample["species"] == "Iris-versicolor").sum()
+print(f'Num Iris-virginica: {num_virginica}')
+print(f'Num Iris-setosa: {num_setosa}')
+print(f'Num Iris-versicolor: {num_versicolor}')
+
+sample1= dataframe_copy.sample(n=150, replace=True)
+print(sample1.head())
+num_virginica = (sample1["species"] == "Iris-virginica").sum()
+num_setosa = (sample1["species"] == "Iris-setosa").sum()
+num_versicolor = (sample1["species"] == "Iris-versicolor").sum()
+print(f'Num Iris-virginica: {num_virginica}')
+print(f'Num Iris-setosa: {num_setosa}')
+print(f'Num Iris-versicolor: {num_versicolor}')
+
+sample2 = dataframe_copy.groupby('species', group_keys=False).apply(lambda x : x.sample(frac=0.5))
+num_virginica = (sample2["species"] == "Iris-virginica").sum()
+num_setosa = (sample2["species"] == "Iris-setosa").sum()
+num_versicolor = (sample2["species"] == "Iris-versicolor").sum()
+print(f'Num Iris-virginica: {num_virginica}')
+print(f'Num Iris-setosa: {num_setosa}')
+print(f'Num Iris-versicolor: {num_versicolor}')
+
+sample3 = dataframe_copy.groupby('species', group_keys = False).apply(lambda x : x.sample(50))
+num_virginica = (sample3["species"] == "Iris-virginica").sum()
+num_setosa = (sample3["species"] == "Iris-setosa").sum()
+num_versicolor = (sample3["species"] == "Iris-versicolor").sum()
+print(f'Num Iris-virginica: {num_virginica}')
+print(f'Num Iris-setosa: {num_setosa}')
+print(f'Num Iris-versicolor: {num_versicolor}')
+
+# ===================================================================
