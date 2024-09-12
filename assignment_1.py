@@ -6,11 +6,11 @@ from sklearn.preprocessing import MinMaxScaler, StandardScaler
 from sklearn.decomposition import PCA
 import scipy
 
-data = pd.read_csv("Data-mining-I/iris_data.csv", delimiter=";")
-labels = pd.read_csv("Data-mining-I/iris_labels-1.csv", delimiter=";")
+# data = pd.read_csv("Data-mining-I/iris_data.csv", delimiter=";")
+# labels = pd.read_csv("Data-mining-I/iris_labels-1.csv", delimiter=";")
 
-# data = pd.read_csv("iris_data.csv", delimiter=";")
-# labels = pd.read_csv("iris_labels-1.csv", delimiter=";")
+data = pd.read_csv("iris_data.csv", delimiter=";")
+labels = pd.read_csv("iris_labels-1.csv", delimiter=";")
 
 # ===================================================================
 # Part 1
@@ -79,8 +79,8 @@ dataframe_copy = dataframe
 
 # print(f"Mean of sl: {dataframe['sl'].mean()}")
 # print(f"Satandard deviation of sl: {dataframe['sl'].std()}")
-# pairplot(dataframe, hue= "species")
-# plt.savefig("Data-mining-I/pairplot2.png")
+pairplot(dataframe, hue= "species")
+plt.savefig("pairplot2.png")
 
 # ===================================================================
 # Part 4
@@ -132,8 +132,8 @@ PCA_dataframe = pd.concat([scaled_dataframe, non_numeric_columns], axis=1)
 
 # print(f"Mean of sl: {PCA_dataframe['sl'].mean()}")
 # print(f"Satandard deviation of sl: {PCA_dataframe['sl'].std()}")
-# pairplot(PCA_dataframe, hue= "species")
-# plt.savefig("Data-mining-I/pairplot_pca.png")
+pairplot(PCA_dataframe, hue= "species")
+plt.savefig("pairplot_pca.png")
 
 # print(pca.explained_variance_ratio_)
 
