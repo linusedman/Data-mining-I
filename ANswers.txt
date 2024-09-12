@@ -71,14 +71,14 @@ TASK 5:
 
                                     Simple sampling     Bootstrapping   Stratified (5.3)    Stratified (5.4) 
 
-Number of iris versicolor 
+Number of iris versicolor           13                  12              249                 50
 
-Number of iris setosa 
+Number of iris setosa               57                  71              1496                50
 
-Number of iris virginica 
+Number of iris virginica            80                  67              1498                50
 
-Are there repeated identifiers? 
+Are there repeated identifiers?     No                  Yes             No                  No
 
-Does the number of iris versicolor 
+Does the number of iris versicolor  Yes                 Yes             No                  No
 included in the sample change if 
 you change the local random seed? 
